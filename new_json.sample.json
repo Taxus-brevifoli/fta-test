@@ -1,0 +1,107 @@
+{
+  /**
+   * 元信息层：保留核心标识字段
+   */
+  "meta": {
+    "ftaId": "FTA-DEMO-001",        //故障树唯一标识
+    "name": "登机梯故障树",  // 故障树名称
+    "topNodeId": "node-001"         // 顶事件节点ID
+  },
+
+  /**
+   * 核心逻辑层：仅保留事件+逻辑门的核心字段
+   */
+  "logic": {
+    /**
+     * 事件节点列表：仅保留核心属性，去掉复杂扩展
+     * 节点类型：TOP(顶事件)/INTERMEDIATE(中间事件)/BASIC(底事件)
+     */
+    "nodes": [
+      {
+        "nodeId": "node-001",        // 节点唯一ID
+        "nodeType": "TOP",           // 顶事件
+        "name": "登机梯故障",        // 事件名称
+        "probability": null          // 顶事件概率
+      },
+      {
+        "nodeId": "node-002",
+        "nodeType": "INTERMEDIATE",  // 中间事件
+        "name": "回收故障",
+        "probability": null         
+      },
+      {
+        "nodeId": "node-003",
+        "nodeType": "INTERMEDIATE",  // 中间事件
+        "name": "释放故障",
+        "probability": null
+      },
+      {
+        "nodeId": "node-004",
+        "nodeType": "BASIC",         // 底事件（最底层原因）
+        "name": "梯子机械锁故障",
+        "probability": 1e-8          // 示例概率
+      },
+      {
+        "nodeId": "node-005",
+        "nodeType": "BASIC",
+        "name": "梯子气路压力不足",
+        "probability": 1e-8
+      }
+    ],
+
+    /**
+     * 逻辑门列表：目前仅设计了 OR/AND 门
+     */
+    "gates": [
+      {
+        "gateId": "gate-001",        // 逻辑门唯一ID
+        "gateType": "OR",            // 或门
+        "parentNodeId": "node-001",  // 父事件ID
+        "childNodeIds": ["node-002", "node-003"] // 子事件ID列表
+      },
+      {
+        "gateId": "gate-002",
+        "gateType": "AND",           // 与门
+        "parentNodeId": "node-002",  // 父事件ID
+        "childNodeIds": ["node-004", "node-005"] // 子事件ID列表
+      }
+    ]
+  },
+
+  /**
+   * 可视化层：基础的画布和节点位置
+   */
+  "visual": {
+    "canvas": {
+      "width": 1920,                 // 画布宽度
+      "height": 1080                 // 画布高度
+    },
+    "nodePositions": [               // 节点坐标
+      {
+        "nodeId": "node-001",
+        "x": 152,
+        "y": 161
+      },
+      {
+        "nodeId": "node-002",
+        "x": 352,
+        "y": 161
+      },
+      {
+        "nodeId": "node-003",
+        "x": 352,
+        "y": 361
+      },
+      {
+        "nodeId": "node-004",
+        "x": 552,
+        "y": 161
+      },
+      {
+        "nodeId": "node-005",
+        "x": 552,
+        "y": 261
+      }
+    ]
+  }
+}

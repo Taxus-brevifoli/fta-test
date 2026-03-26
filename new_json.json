@@ -1,0 +1,94 @@
+{
+  "meta": {
+    "ftaId": "FTA-DEMO-001",
+    "name": "登机梯故障树",
+    "topNodeId": "node-001"
+  },
+  "logic": {
+    "nodes": [
+      {
+        "nodeId": "node-001",
+        "nodeType": "TOP",
+        "name": "登机梯故障",
+        "probability": null
+      },
+      {
+        "nodeId": "node-002",
+        "nodeType": "INTERMEDIATE",
+        "name": "回收故障",
+        "probability": null
+      },
+      {
+        "nodeId": "node-003",
+        "nodeType": "INTERMEDIATE",
+        "name": "释放故障",
+        "probability": null
+      },
+      {
+        "nodeId": "node-004",
+        "nodeType": "BASIC",
+        "name": "梯子机械锁故障",
+        "probability": 1E-08
+      },
+      {
+        "nodeId": "node-005",
+        "nodeType": "BASIC",
+        "name": "梯子气路压力不足",
+        "probability": 1E-08
+      }
+    ],
+    "gates": [
+      {
+        "gateId": "gate-001",
+        "gateType": "OR",
+        "parentNodeId": "node-001",
+        "childNodeIds": [
+          "node-002",
+          "node-003"
+        ]
+      },
+      {
+        "gateId": "gate-002",
+        "gateType": "AND",
+        "parentNodeId": "node-002",
+        "childNodeIds": [
+          "node-004",
+          "node-005"
+        ]
+      }
+    ]
+  },
+  "visual": {
+    "canvas": {
+      "width": 1920,
+      "height": 1080
+    },
+    "nodePositions": [
+      {
+        "nodeId": "node-001",
+        "x": 152,
+        "y": 161
+      },
+      {
+        "nodeId": "node-002",
+        "x": 352,
+        "y": 161
+      },
+      {
+        "nodeId": "node-003",
+        "x": 352,
+        "y": 361
+      },
+      {
+        "nodeId": "node-004",
+        "x": 552,
+        "y": 161
+      },
+      {
+        "nodeId": "node-005",
+        "x": 552,
+        "y": 261
+      }
+    ]
+  }
+}
